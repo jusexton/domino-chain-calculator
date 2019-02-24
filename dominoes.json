@@ -1,5 +1,5 @@
 {
-    "starting_value": 1,
+    "starting_value": 5,
     "dominoes": [{
             "valueOne": 9,
             "valueTwo": 1
@@ -57,7 +57,7 @@
             "valueTwo": 15
         },
         {
-            "valueOne": 10,
+            "valueOne": 2,
             "valueTwo": 9
         }
     ]
