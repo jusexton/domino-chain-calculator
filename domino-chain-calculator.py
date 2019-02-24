@@ -1,4 +1,5 @@
 from anytree import Node, RenderTree, DoubleStyle
+import json
 # TODO: Make use of anytree iterators to determine best possible tree paths
 
 
@@ -55,7 +56,10 @@ class DominoTree:
         self.root_node = Node(starting_value)
 
     @staticmethod
-    def create(dominoes, starting_value):
+    def create(dominoes, starting_value, unique=True):
+        if unique and len(set(dominoes)) != len(dominoes):
+            raise ValueError('All given dominoes must be unique')
+
         tree = DominoTree(starting_value)
         return DominoTree._create(dominoes, starting_value, tree.root_node, tree)
 
@@ -72,28 +76,19 @@ class DominoTree:
 
 
 def main():
-    starting_value = 5
-    domino_list = load_dominoes('dominoes.txt')
-
+    starting_value, domino_list = load_domino_data('dominoes.json')
     tree = DominoTree.create(domino_list, starting_value)
     print(RenderTree(tree.root_node, style=DoubleStyle))
 
 
-def load_dominoes(source):
-    """
-    Given a file path, returns list of dominoes.
-    Ex.
-    6,5
-    11,4
-    5,1
-    ...
-    """
+def load_domino_data(source):
     with open(source) as file:
-        lines = file.read().splitlines()
-        split_lines = map(lambda line: line.split(','), lines)
-        dominoes = map(lambda values: Domino(
-            int(values[0]), int(values[1])), split_lines)
-        return list(dominoes)
+        data = json.load(file)
+        starting_value = data['starting_value']
+        dominoes = [Domino(domino_values['valueOne'], domino_values['valueTwo'])
+                    for domino_values in data['dominoes']]
+
+        return starting_value, dominoes
 
 
 if __name__ == "__main__":
