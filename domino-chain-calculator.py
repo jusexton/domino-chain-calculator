@@ -42,7 +42,7 @@ class Domino:
         return Domino(self.valueTwo, self.valueOne)
 
     def __repr__(self):
-        return f'Domino [{self.valueOne} {self.valueTwo}]'
+        return f'[{self.valueOne} {self.valueTwo}]'
 
     def __eq__(self, other):
         return self.__class__ == other.__class__ and self.valueOne == other.valueOne and self.valueTwo == other.valueTwo
