@@ -1,6 +1,6 @@
-from anytree import Node, RenderTree, DoubleStyle
 import json
-# TODO: Make use of anytree iterators to determine best possible tree paths
+
+from anytree import DoubleStyle, Node, RenderTree
 
 
 class Domino:
@@ -76,6 +76,10 @@ class DominoTree:
 
 
 def main():
+    # TODO: Make use of anytree iterators to determine best possible tree paths
+    # TODO: Create functionality to generate random dominoes
+    # TODO: Add command line interface
+    # TODO: Add ability to build domino list from picture of dominoes (ambitioues)
     starting_value, domino_list = load_domino_data('dominoes.json')
     tree = DominoTree.create(domino_list, starting_value)
     print(RenderTree(tree.root_node, style=DoubleStyle))
