@@ -2,6 +2,7 @@ from anytree import Node
 from dominoes import Domino
 
 
+# TODO: Should be refactored. Class design makes no sense.
 class DominoTree(object):
     def __init__(self, starting_value):
         starting_domino = Domino(starting_value)

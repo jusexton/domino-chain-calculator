@@ -1,4 +1,5 @@
 import json
+import random
 
 
 class Domino(object):
@@ -48,6 +49,15 @@ class Domino(object):
         """
         return Domino(self.valueTwo, self.valueOne)
 
+    @staticmethod
+    def random(valueOneRange=(1, 12), valueTwoRange=(1, 12)):
+        u"""
+        Creates a domino with random values
+        """
+        valueOne = random.randint(valueOneRange[0], valueOneRange[1])
+        valueTwo = random.randint(valueTwoRange[0], valueTwoRange[1])
+        return Domino(valueOne, valueTwo)
+
     def __repr__(self):
         return f'[{self.valueOne} {self.valueTwo}]'
 
@@ -65,11 +75,18 @@ class DominoData(object):
     DOMINO_LIST_NAME = 'dominoes'
 
     def __init__(self, starting_value, domino_list):
+        u"""
+        Creates new domino data instance. 
+        Instance is used to encapsulate information regarding a domino game.
+        """
         self.starting_value = starting_value
         self.domino_list = domino_list
 
     @staticmethod
     def read(source):
+        u"""
+        Given a json file, reads json data into domino data instance
+        """
         with open(source) as file:
             data = json.load(file)
             starting_value = data[DominoData.STARTING_VALUE_NAME]
@@ -77,10 +94,3 @@ class DominoData(object):
                            for domino_values in data[DominoData.DOMINO_LIST_NAME]]
 
         return DominoData(starting_value, domino_list)
-
-
-def create_reandom_domino(valueOneRange, valueTwoRange):
-    import random
-    valueOne = random.randint(valueOneRange[0], valueOneRange[1])
-    valueTwo = random.randint(valueTwoRange[0], valueTwoRange[1])
-    return Domino(valueOne, valueTwo)
