@@ -1,6 +1,7 @@
 {
-    "starting_value": 5,
-    "dominoes": [{
+    "startingValue": 5,
+    "dominoes": [
+        {
             "valueOne": 9,
             "valueTwo": 1
         },
