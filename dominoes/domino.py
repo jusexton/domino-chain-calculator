@@ -16,11 +16,30 @@ class Domino(object):
         if value_two is None:
             value_two = value_one
 
-        if value_one < 0 or value_two < 0:
-            raise ValueError('Both supplied values must not be negative')
+        self._value_one = value_one
+        self._value_two = value_two
 
-        self.value_one = value_one
-        self.value_two = value_two
+    @property
+    def value_one(self):
+        return self._value_one
+
+    @value_one.setter
+    def value_one(self, value_one):
+        if value_one < 0:
+            raise ValueError('')
+
+        self._value_one = value_one
+
+    @property
+    def value_two(self):
+        return self._value_two
+
+    @value_two.setter
+    def value_two(self, value_two):
+        if value_two < 0:
+            raise ValueError('')
+
+        self._value_two = value_two
 
     def contains(self, value: int) -> bool:
         u"""
@@ -65,10 +84,13 @@ class Domino(object):
         return Domino(value_one, value_two)
 
     def __repr__(self) -> str:
-        return f'{self.__class__}(value_one={self.value_one}, value_two={self.value_two})'
+        return f'{self.__class__.__name__}(value_one={self.value_one}, value_two={self.value_two})'
 
     def __str__(self) -> str:
         return f'[{self.value_one} {self.value_two}]'
+
+    def __iter__(self):
+        yield from [self.value_one, self.value_two]
 
     def __eq__(self, other: Domino) -> bool:
         return self.__class__ == other.__class__ and \
@@ -101,6 +123,9 @@ class DominoData(object):
         """
         self.starting_value = starting_value
         self.domino_list = domino_list
+
+    def __iter__(self):
+        yield from [self.starting_value, self.domino_list]
 
     @staticmethod
     def read(source: str) -> DominoData:

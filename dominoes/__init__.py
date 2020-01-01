@@ -1,4 +1,4 @@
 from .domino import Domino
 from .domino import DominoData
-from .dominotree import DominoTree
-from .dominoutil import domino_count
+from .dominoutil import domino_count, sum_domino_node
+from .routes import DominoRoutes, sum_domino_node
