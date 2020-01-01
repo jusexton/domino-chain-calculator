@@ -16,8 +16,8 @@ class Domino(object):
         if value_two is None:
             value_two = value_one
 
-        self._value_one = value_one
-        self._value_two = value_two
+        self.value_one = value_one
+        self.value_two = value_two
 
     @property
     def value_one(self):
@@ -25,8 +25,12 @@ class Domino(object):
 
     @value_one.setter
     def value_one(self, value_one):
+        u"""
+        Sets given value one as this instances value two.
+        Does not accept negative values
+        """
         if value_one < 0:
-            raise ValueError('')
+            raise ValueError('value cannot be negative')
 
         self._value_one = value_one
 
@@ -36,8 +40,12 @@ class Domino(object):
 
     @value_two.setter
     def value_two(self, value_two):
+        u"""
+        Sets given value two as this instances value two.
+        Does not accept negative values
+        """
         if value_two < 0:
-            raise ValueError('')
+            raise ValueError('value cannot be negative')
 
         self._value_two = value_two
 
