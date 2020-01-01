@@ -13,7 +13,7 @@ class DominoRoutes:
             domino_data: DominoData,
             unique: bool = True,
             include_sum: bool = False):
-        (self.starting_value, self.domino_list) = domino_data
+        self.starting_value, self.domino_list = domino_data
 
         if unique and len(set(self.domino_list)) != len(self.domino_list):
             raise ValueError('All given dominoes must be unique')
@@ -21,11 +21,17 @@ class DominoRoutes:
         self.include_sum = include_sum
 
     def all_possible(self):
+        u"""
+        Returns all possible routes that can be taken
+        """
         starting_domino = Domino(self.starting_value)
         root_node = Node(starting_domino)
         return _all_possible_routes(self.domino_list, self.starting_value, self.include_sum, root_node, root_node)
 
     def best_possible(self) -> Node:
+        u"""
+        Returns the best possible route that yields the largest sum
+        """
         root_node = self.all_possible()
 
         leaf_sum_map = {}

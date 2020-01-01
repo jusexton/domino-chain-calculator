@@ -40,4 +40,5 @@ if __name__ == '__main__':
 
     routes = DominoRoutes(domino_data, include_sum=args.include_sum)
     root_node = routes.all_possible() if args.verbose else routes.best_possible()
+
     print(RenderTree(root_node, style=DoubleStyle))

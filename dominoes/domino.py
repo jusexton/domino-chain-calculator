@@ -5,7 +5,7 @@ import random
 from typing import Tuple, Iterable
 
 
-class Domino(object):
+class Domino:
     def __init__(self, value_one: int, value_two: int = None):
         u"""
         Simple domino instance representing a single domino.
@@ -118,7 +118,7 @@ class Domino(object):
         return self.total_value() < other.total_value()
 
 
-class DominoData(object):
+class DominoData:
     STARTING_VALUE_NAME = 'startingValue'
     DOMINO_VALUE_ONE_NAME = 'valueOne'
     DOMINO_VALUE_TWO_NAME = 'valueTwo'
