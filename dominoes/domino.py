@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-import json
 import random
-from typing import Tuple, Iterable
+from typing import Tuple, List
+
+from marshmallow import Schema, fields, post_load
 
 
 class Domino:
@@ -119,12 +120,7 @@ class Domino:
 
 
 class DominoData:
-    STARTING_VALUE_NAME = 'startingValue'
-    DOMINO_VALUE_ONE_NAME = 'valueOne'
-    DOMINO_VALUE_TWO_NAME = 'valueTwo'
-    DOMINO_LIST_NAME = 'dominoes'
-
-    def __init__(self, starting_value: int, domino_list: Iterable[Domino]):
+    def __init__(self, starting_value: int, domino_list: List[Domino]):
         u"""
         Creates new domino data instance.
         Instance is used to encapsulate information regarding a domino game.
@@ -135,17 +131,20 @@ class DominoData:
     def __iter__(self):
         yield from [self.starting_value, self.domino_list]
 
-    @staticmethod
-    def read(source: str) -> DominoData:
-        u"""
-        Given a json file, reads json data into domino data instance
-        """
-        with open(source) as file:
-            data = json.load(file)
-            starting_value = data[DominoData.STARTING_VALUE_NAME]
-            domino_list = [
-                Domino(domino_values[DominoData.DOMINO_VALUE_ONE_NAME], domino_values[DominoData.DOMINO_VALUE_TWO_NAME])
-                for domino_values in data[DominoData.DOMINO_LIST_NAME]
-            ]
 
-        return DominoData(starting_value, domino_list)
+class DominoSchema(Schema):
+    value_one = fields.Integer()
+    value_two = fields.Integer()
+
+    @post_load
+    def to_domino(self, data, **kwargs):
+        return Domino(**data)
+
+
+class DominoDataSchema(Schema):
+    starting_value = fields.Integer()
+    domino_list = fields.List(fields.Nested(DominoSchema))
+
+    @post_load
+    def to_domino_data(self, data, **kwargs):
+        return DominoData(**data)

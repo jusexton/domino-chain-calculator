@@ -1,65 +1,65 @@
 {
-    "startingValue": 5,
-    "dominoes": [
+    "starting_value": 5,
+    "domino_list": [
         {
-            "valueOne": 9,
-            "valueTwo": 1
+            "value_one": 9,
+            "value_two": 1
         },
         {
-            "valueOne": 5,
-            "valueTwo": 7
+            "value_one": 5,
+            "value_two": 7
         },
         {
-            "valueOne": 8,
-            "valueTwo": 13
+            "value_one": 8,
+            "value_two": 13
         },
         {
-            "valueOne": 9,
-            "valueTwo": 0
+            "value_one": 9,
+            "value_two": 0
         },
         {
-            "valueOne": 1,
-            "valueTwo": 1
+            "value_one": 1,
+            "value_two": 1
         },
         {
-            "valueOne": 1,
-            "valueTwo": 12
+            "value_one": 1,
+            "value_two": 12
         },
         {
-            "valueOne": 8,
-            "valueTwo": 10
+            "value_one": 8,
+            "value_two": 10
         },
         {
-            "valueOne": 7,
-            "valueTwo": 8
+            "value_one": 7,
+            "value_two": 8
         },
         {
-            "valueOne": 14,
-            "valueTwo": 4
+            "value_one": 14,
+            "value_two": 4
         },
         {
-            "valueOne": 8,
-            "valueTwo": 5
+            "value_one": 8,
+            "value_two": 5
         },
         {
-            "valueOne": 12,
-            "valueTwo": 11
+            "value_one": 12,
+            "value_two": 11
         },
         {
-            "valueOne": 14,
-            "valueTwo": 11
+            "value_one": 14,
+            "value_two": 11
         },
         {
-            "valueOne": 8,
-            "valueTwo": 11
+            "value_one": 8,
+            "value_two": 11
         },
         {
-            "valueOne": 7,
-            "valueTwo": 15
+            "value_one": 7,
+            "value_two": 15
         },
         {
-            "valueOne": 2,
-            "valueTwo": 9
+            "value_one": 2,
+            "value_two": 9
         }
     ]
 }

@@ -3,17 +3,24 @@ from argparse import ArgumentParser, RawTextHelpFormatter
 from anytree import DoubleStyle, RenderTree
 
 from dominoes import DominoData, DominoRoutes
+from dominoes.domino import DominoDataSchema
 
 description_path = "description.txt"
 
 
-def get_description() -> str:
+def read_description() -> str:
     with open(description_path) as file:
         return file.read()
 
 
+def read_domino_data(source: str) -> DominoData:
+    with open(source) as file:
+        json_string = file.read()
+        return DominoDataSchema().loads(json_string)
+
+
 def build_argument_parser():
-    description = get_description()
+    description = read_description()
 
     parser = ArgumentParser(
         description=description, formatter_class=RawTextHelpFormatter)
@@ -36,7 +43,7 @@ if __name__ == '__main__':
     argument_parser = build_argument_parser()
     args = argument_parser.parse_args()
 
-    domino_data = DominoData.read(args.source)
+    domino_data = read_domino_data(args.source)
 
     routes = DominoRoutes(domino_data, include_sum=args.include_sum)
     root_node = routes.all_possible() if args.verbose else routes.best_possible()
