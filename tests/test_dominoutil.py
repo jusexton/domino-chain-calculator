@@ -3,7 +3,7 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
-from dominoes.dominoutil import domino_count
+from dominoes import domino_count
 
 
 class TestDominoUtil(TestCase):
