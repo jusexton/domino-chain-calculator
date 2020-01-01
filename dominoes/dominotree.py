@@ -1,15 +1,22 @@
+from __future__ import annotations
+
+from typing import Iterable
+
 from anytree import Node
-from dominoes import Domino
+
+from dominoes import Domino, DominoData
 
 
 # TODO: Should be refactored. Class design makes no sense.
 class DominoTree(object):
-    def __init__(self, starting_value):
+    def __init__(self, starting_value: int):
         starting_domino = Domino(starting_value)
         self.root_node = Node(starting_domino)
 
+        self.best_route = None
+
     @staticmethod
-    def create(domino_data, unique=True):
+    def create(domino_data: DominoData, unique: bool = True) -> DominoTree:
         domino_list = domino_data.domino_list
         starting_value = domino_data.starting_value
 
@@ -20,7 +27,7 @@ class DominoTree(object):
         return DominoTree._create(domino_list, starting_value, tree.root_node, tree)
 
     @staticmethod
-    def _create(dominoes, starting_value, parent, tree):
+    def _create(dominoes: Iterable[Domino], starting_value: int, parent: Node, tree: DominoTree) -> DominoTree:
         for domino in dominoes:
             if domino.contains(starting_value):
                 new = Node(domino, parent=parent)

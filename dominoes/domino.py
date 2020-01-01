@@ -1,71 +1,91 @@
+from __future__ import annotations
+
 import json
 import random
+from typing import Tuple, Iterable
 
 
 class Domino(object):
-    def __init__(self, valueOne, valueTwo=None):
+    def __init__(self, value_one: int, value_two: int = None):
         u"""
         Simple domino instance representing a single domino.
 
         If no second value is given, the domino is assumed to be a double and the given value will represent both
         of the dominoes values
         """
-        if valueTwo is None:
-            valueTwo = valueOne
+        if value_two is None:
+            value_two = value_one
 
-        if valueOne < 0 or valueTwo < 0:
+        if value_one < 0 or value_two < 0:
             raise ValueError('Both supplied values must not be negative')
 
-        self.valueOne = valueOne
-        self.valueTwo = valueTwo
+        self.value_one = value_one
+        self.value_two = value_two
 
-    def contains(self, value):
+    def contains(self, value: int) -> bool:
         u"""
         Return whether one of the domino values is a given value.
         """
-        return self.valueOne == value or self.valueTwo == value
+        return self.value_one == value or self.value_two == value
 
-    def opposite_of(self, value):
+    def opposite_of(self, value: int) -> int:
         """
         Given a value, returns the opposite of that value if it exists within the domino instance.
         Otherwise return -1.
         """
-        if self.valueOne == value:
-            return self.valueTwo
-        elif self.valueTwo == value:
-            return self.valueOne
+        if self.value_one == value:
+            return self.value_two
+        elif self.value_two == value:
+            return self.value_one
         else:
             return -1
 
-    def is_double(self):
+    def is_double(self) -> bool:
         u"""
-        Returns whether the domino instance is a double. (If both domnio values are the same)
+        Returns whether the domino instance is a double. (If both domino values are the same)
         """
-        return self.valueOne == self.valueTwo
+        return self.value_one == self.value_two
 
-    def invert(self):
+    def invert(self) -> Domino:
         u"""
         Returns a new domino with inverted values
         """
-        return Domino(self.valueTwo, self.valueOne)
+        return Domino(self.value_two, self.value_one)
+
+    def total_value(self):
+        return self.value_one + self.value_two
 
     @staticmethod
-    def random(valueOneRange=(1, 12), valueTwoRange=(1, 12)):
+    def random(value_one_range: Tuple[int, int] = (1, 12), value_two_range: Tuple[int, int] = (1, 12)) -> Domino:
         u"""
         Creates a domino with random values
         """
-        valueOne = random.randint(valueOneRange[0], valueOneRange[1])
-        valueTwo = random.randint(valueTwoRange[0], valueTwoRange[1])
-        return Domino(valueOne, valueTwo)
+        value_one = random.randint(value_one_range[0], value_one_range[1])
+        value_two = random.randint(value_two_range[0], value_two_range[1])
+        return Domino(value_one, value_two)
 
-    def __repr__(self):
-        return f'[{self.valueOne} {self.valueTwo}]'
+    def __repr__(self) -> str:
+        return f'{self.__class__}(value_one={self.value_one}, value_two={self.value_two})'
 
-    def __eq__(self, other):
-        return self.__class__ == other.__class__ and self.valueOne == other.valueOne and self.valueTwo == other.valueTwo
+    def __str__(self) -> str:
+        return f'[{self.value_one} {self.value_two}]'
 
-    def __hash__(self):
-        return hash(str(self.valueOne) + str(self.valueTwo))
+    def __eq__(self, other: Domino) -> bool:
+        return self.__class__ == other.__class__ and \
+               self.value_one == other.value_one and \
+               self.value_two == other.value_two
+
+    def __hash__(self) -> int:
+        return hash(str(self.value_one) + str(self.value_two))
+
+    def __add__(self, other: Domino) -> Domino:
+        return Domino(self.value_one + other.value_one, self.value_two + other.value_two)
+
+    def __gt__(self, other: Domino) -> bool:
+        return self.total_value() > other.total_value()
+
+    def __lt__(self, other: Domino) -> bool:
+        return self.total_value() < other.total_value()
 
 
 class DominoData(object):
@@ -74,23 +94,25 @@ class DominoData(object):
     DOMINO_VALUE_TWO_NAME = 'valueTwo'
     DOMINO_LIST_NAME = 'dominoes'
 
-    def __init__(self, starting_value, domino_list):
+    def __init__(self, starting_value: int, domino_list: Iterable[Domino]):
         u"""
-        Creates new domino data instance. 
+        Creates new domino data instance.
         Instance is used to encapsulate information regarding a domino game.
         """
         self.starting_value = starting_value
         self.domino_list = domino_list
 
     @staticmethod
-    def read(source):
+    def read(source: str) -> DominoData:
         u"""
         Given a json file, reads json data into domino data instance
         """
         with open(source) as file:
             data = json.load(file)
             starting_value = data[DominoData.STARTING_VALUE_NAME]
-            domino_list = [Domino(domino_values[DominoData.DOMINO_VALUE_ONE_NAME], domino_values[DominoData.DOMINO_VALUE_TWO_NAME])
-                           for domino_values in data[DominoData.DOMINO_LIST_NAME]]
+            domino_list = [
+                Domino(domino_values[DominoData.DOMINO_VALUE_ONE_NAME], domino_values[DominoData.DOMINO_VALUE_TWO_NAME])
+                for domino_values in data[DominoData.DOMINO_LIST_NAME]
+            ]
 
         return DominoData(starting_value, domino_list)

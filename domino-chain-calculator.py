@@ -1,6 +1,8 @@
-from dominoes import DominoData, DominoTree
-from anytree import DoubleStyle, RenderTree
 from argparse import ArgumentParser, RawTextHelpFormatter
+
+from anytree import DoubleStyle, RenderTree
+
+from dominoes import DominoData, DominoTree
 
 
 def build_argument_parser():
