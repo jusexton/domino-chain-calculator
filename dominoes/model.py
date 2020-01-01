@@ -3,8 +3,6 @@ from __future__ import annotations
 import random
 from typing import Tuple, List
 
-from marshmallow import Schema, fields, post_load
-
 
 class Domino:
     def __init__(self, value_one: int, value_two: int = None):
@@ -14,11 +12,8 @@ class Domino:
         If no second value is given, the domino is assumed to be a double and the given value will represent both
         of the dominoes values
         """
-        if value_two is None:
-            value_two = value_one
-
         self.value_one = value_one
-        self.value_two = value_two
+        self.value_two = value_one if value_two is None else value_two
 
     @property
     def value_one(self):
@@ -125,26 +120,11 @@ class DominoData:
         Creates new domino data instance.
         Instance is used to encapsulate information regarding a domino game.
         """
+        if starting_value < 0:
+            raise ValueError('Starting value can not be negative')
+
         self.starting_value = starting_value
         self.domino_list = domino_list
 
     def __iter__(self):
         yield from [self.starting_value, self.domino_list]
-
-
-class DominoSchema(Schema):
-    value_one = fields.Integer()
-    value_two = fields.Integer()
-
-    @post_load
-    def to_domino(self, data, **kwargs):
-        return Domino(**data)
-
-
-class DominoDataSchema(Schema):
-    starting_value = fields.Integer()
-    domino_list = fields.List(fields.Nested(DominoSchema))
-
-    @post_load
-    def to_domino_data(self, data, **kwargs):
-        return DominoData(**data)

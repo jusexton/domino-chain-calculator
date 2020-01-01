@@ -1,65 +1,65 @@
 {
-    "starting_value": 5,
-    "domino_list": [
-        {
-            "value_one": 9,
-            "value_two": 1
-        },
-        {
-            "value_one": 5,
-            "value_two": 7
-        },
-        {
-            "value_one": 8,
-            "value_two": 13
-        },
-        {
-            "value_one": 9,
-            "value_two": 0
-        },
-        {
-            "value_one": 1,
-            "value_two": 1
-        },
-        {
-            "value_one": 1,
-            "value_two": 12
-        },
-        {
-            "value_one": 8,
-            "value_two": 10
-        },
-        {
-            "value_one": 7,
-            "value_two": 8
-        },
-        {
-            "value_one": 14,
-            "value_two": 4
-        },
-        {
-            "value_one": 8,
-            "value_two": 5
-        },
-        {
-            "value_one": 12,
-            "value_two": 11
-        },
-        {
-            "value_one": 14,
-            "value_two": 11
-        },
-        {
-            "value_one": 8,
-            "value_two": 11
-        },
-        {
-            "value_one": 7,
-            "value_two": 15
-        },
-        {
-            "value_one": 2,
-            "value_two": 9
-        }
-    ]
+  "starting_value": 5,
+  "domino_list": [
+    {
+      "value_one": 9,
+      "value_two": 1
+    },
+    {
+      "value_one": 5,
+      "value_two": 7
+    },
+    {
+      "value_one": 8,
+      "value_two": 13
+    },
+    {
+      "value_one": 9,
+      "value_two": 0
+    },
+    {
+      "value_one": 1,
+      "value_two": 1
+    },
+    {
+      "value_one": 1,
+      "value_two": 12
+    },
+    {
+      "value_one": 8,
+      "value_two": 10
+    },
+    {
+      "value_one": 7,
+      "value_two": 8
+    },
+    {
+      "value_one": 14,
+      "value_two": 4
+    },
+    {
+      "value_one": 8,
+      "value_two": 5
+    },
+    {
+      "value_one": 12,
+      "value_two": 11
+    },
+    {
+      "value_one": 14,
+      "value_two": 11
+    },
+    {
+      "value_one": 8,
+      "value_two": 11
+    },
+    {
+      "value_one": 7,
+      "value_two": 15
+    },
+    {
+      "value_one": 2,
+      "value_two": 9
+    }
+  ]
 }

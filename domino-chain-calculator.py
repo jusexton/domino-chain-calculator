@@ -2,8 +2,7 @@ from argparse import ArgumentParser, RawTextHelpFormatter
 
 from anytree import DoubleStyle, RenderTree
 
-from dominoes import DominoData, DominoRoutes
-from dominoes.domino import DominoDataSchema
+from dominoes import DominoData, DominoDataSchema, DominoPossibilities
 
 description_path = "description.txt"
 
@@ -44,7 +43,7 @@ if __name__ == '__main__':
 
     domino_data = read_domino_data(args.source)
 
-    routes = DominoRoutes(domino_data, include_sum=args.include_sum)
-    root_node = routes.all_possible() if args.verbose else routes.best_possible()
+    possibilities = DominoPossibilities(domino_data, include_sum=args.include_sum)
+    root_node = possibilities.all() if args.verbose else possibilities.best()
 
     print(RenderTree(root_node, style=DoubleStyle))
