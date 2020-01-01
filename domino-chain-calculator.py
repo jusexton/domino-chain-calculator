@@ -22,8 +22,7 @@ def read_domino_data(source: str) -> DominoData:
 def build_argument_parser():
     description = read_description()
 
-    parser = ArgumentParser(
-        description=description, formatter_class=RawTextHelpFormatter)
+    parser = ArgumentParser(description=description, formatter_class=RawTextHelpFormatter)
 
     parser.add_argument('-s', '--source', action='store', required=True,
                         help='the source json file that will be used as domino data')
