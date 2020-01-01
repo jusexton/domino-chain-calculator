@@ -23,6 +23,8 @@ def build_argument_parser():
 
 def main():
     # TODO: Make use of anytree iterators to determine best possible tree paths
+    # TODO: By default, should instead only display the best possible domino chain
+    # TODO: Add -v --verbose option to display all possible combinations with best path color coordinated.
     # TODO: Add ability to build domino list from picture of dominoes (ambitioues)
     parser = build_argument_parser()
     args = parser.parse_args()
