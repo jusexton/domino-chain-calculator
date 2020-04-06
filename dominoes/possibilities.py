@@ -47,9 +47,11 @@ def _all_possible(domino_list: Iterable[Domino], starting_value: int, include_su
                   root: Node) -> Node:
     for domino in domino_list:
         if domino.contains(starting_value):
-            domino_sum_kwarg = {'sum': sum_domino_node(parent) + domino.total_value()} if include_sum else {}
+            domino_sum_kwarg = {'sum': sum_domino_node(
+                parent) + domino.total_value()} if include_sum else {}
             new = Node(domino, parent=parent, **domino_sum_kwarg)
             unused = set(filter(lambda d: d != domino, domino_list))
-            root = _all_possible(unused, domino.opposite_of(starting_value), include_sum, new, root)
+            root = _all_possible(unused, domino.opposite_of(
+                starting_value), include_sum, new, root)
 
     return root
