@@ -18,7 +18,11 @@ git clone https://github.com/JSextonn/domino-chain-calculator && cd domino-chain
 ```
 python3 -m venv venv
 
+// MacOS, Linux
 source venv/bin/activate
+
+// Windows
+venv/Scripts/activate.bat
 
 pip3 install -r requirements.txt
 ```
