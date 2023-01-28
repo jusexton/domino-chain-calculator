@@ -11,7 +11,6 @@ The calculator builds a possibility tree with [anytree](https://pypi.org/project
 ## Clone
 ```
 git clone https://github.com/JSextonn/domino-chain-calculator && cd domino-chain-calculator
-
 ```
 
 ## Setup Virtual Environment

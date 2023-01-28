@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from typing import Iterable
-
 from anytree import Node
+from typing import Iterable
 
 from dominoes import Domino, DominoData, sum_domino_node
 

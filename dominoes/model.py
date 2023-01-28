@@ -98,8 +98,8 @@ class Domino:
 
     def __eq__(self, other: Domino) -> bool:
         return self.__class__ == other.__class__ and \
-               self.value_one == other.value_one and \
-               self.value_two == other.value_two
+            self.value_one == other.value_one and \
+            self.value_two == other.value_two
 
     def __hash__(self) -> int:
         return hash(str(self.value_one) + str(self.value_two))
