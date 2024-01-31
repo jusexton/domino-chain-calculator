@@ -4,7 +4,7 @@ Used to calculate all possible chains of dominoes given a list of dominoes and a
 
 The calculator builds a tree of all possible plays with [anytree](https://pypi.org/project/anytree/)
 
-![alt text](result_tree.png)
+![alt text](result-tree.png)
 
 # Running Locally
 
