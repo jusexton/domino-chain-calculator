@@ -1,5 +1,5 @@
-from argparse import ArgumentParser, RawTextHelpFormatter
 import json
+from argparse import ArgumentParser, RawTextHelpFormatter
 
 from anytree import DoubleStyle, RenderTree
 
